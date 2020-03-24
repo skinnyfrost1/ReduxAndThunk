@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component} from 'react';
+import { Component } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from './actions';
 import { fetchPosts } from './actions/ascyncActions';
@@ -8,13 +8,15 @@ import Postinfo from './Postinfo/Postinfo';
 // import {fetchPosts} from './actions/ascyncActions';
 
 
+const counter = useSelector(state => state.counter)
+// const isLogged = useSelector(state => state.isLogged)
+const posts = useSelector(state => state.asc.posts)
+const dispatch = useDispatch();
 
-function App() {
 
-  const counter = useSelector(state => state.counter)
-  // const isLogged = useSelector(state => state.isLogged)
-  const posts = useSelector(state => state.asc.posts)
-  const dispatch = useDispatch();
+class App extends Component {
+
+
 
 
   // const tableStyle = {
@@ -55,30 +57,31 @@ function App() {
   // }
 
 
-
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-      <h2>Counter {counter}</h2>
-      <button onClick={() => dispatch(increment())}>+</button>
-      <button onClick={() => dispatch(decrement())}>-</button>
-      <button onClick={() => dispatch(fetchPosts())}>??????</button>
-      <div>show something.. </div>
-      {/* <div>{posts}</div>
+  return() {
+    return (
+      <div className="App">
+        <h1>Hello</h1>
+        <h2>Counter {counter}</h2>
+        <button onClick={() => dispatch(increment())}>+</button>
+        <button onClick={() => dispatch(decrement())}>-</button>
+        <button onClick={() => dispatch(fetchPosts())}>??????</button>
+        <div>show something.. </div>
+        {/* <div>{posts}</div>
        */}
-      <div>
-        {
-          posts.map((post, index) => {
-            return <Postinfo userId={post.userId}
-              id={post.id}
-              title={post.title}
-              body={post.body}
-              key={post.id} />
-          })
-        }
+        <div>
+          {
+            posts.map((post, index) => {
+              return <Postinfo userId={post.userId}
+                id={post.id}
+                title={post.title}
+                body={post.body}
+                key={post.id} />
+            })
+          }
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
