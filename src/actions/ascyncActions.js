@@ -33,7 +33,9 @@ export const fetchPosts = ()=>{
       axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(response=>{
           console.log(response);
-        const posts = response.data.map(post => post.id)
+        // const posts = response.data.map(post => post.id)
+        const posts = response.data
+
         dispatch(fetchPostsSuccess(posts))
       })
       .catch(error=>{
